@@ -1,0 +1,25 @@
+{
+  "name": "glsl",
+  "displayName": "GLSL",
+  "description": "GLSL Syntax Highlighter",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "glsl",
+      "aliases": ["GLSL", "glsl"],
+      "extensions": [".glsl",".vert",".frag"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "glsl",
+      "scopeName": "source.glsl",
+      "path": "./syntaxes/glsl.tmLanguage.json"
+    }]
+  }
+}

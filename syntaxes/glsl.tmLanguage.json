@@ -1,0 +1,53 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "GLSL",
+	"patterns": [
+		{
+			"include":"#comments"
+		},
+		{
+			"include":"#operators"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include":"#numbers"
+		},
+		{
+			"include":"#reserved-words"
+		},
+		{
+			"include":"#ctrl-statements"
+		},
+		{
+			"include": "#keywords"
+		}
+		
+	],
+	"repository": {
+		
+		"reserved-words":{
+			"match":"\\b(gl_Position,gl_FragColor)\\b",
+			"name":"entity.name.function.member.tpl"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.glsl",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.glsl",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.glsl",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.glsl"
+}
