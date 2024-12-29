@@ -54,7 +54,7 @@ Now that that's done we can see a folder with syntaxes folder and some other fil
 
 |  Name| Sequence | Link | 
 |--|--|--| 
-|  /**/|comment  |[./documents/](comments.md)|
+|  /**/|comment  |[comments](./documents/comments.md)|
 |  /**/|comment  | |
 
 
