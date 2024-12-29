@@ -46,6 +46,9 @@ Added features X, Y, and Z.
 
 ---
 ## References
-https://macromates.com/manual/en/language_grammars
+
+ - https://macromates.com/manual/en/language_grammars
+ - https://stackoverflow.com/questions/30687783/create-custom-language-in-visual-studio-code
+
 
 **Enjoy!**
