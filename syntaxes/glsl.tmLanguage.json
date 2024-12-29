@@ -41,6 +41,27 @@
 					},
 					"end": "\\*/",
 					"name":"comment.block.glsl"
+				},
+				{
+					"begin": "(^[ \\t]+)?(?=//)",
+					"beginCaptures": {
+						"1":{
+							"name":"punctuation.whitespace.comment.leading.glsl"
+						}
+					},
+					"end":"(?!\\G)",
+					"patterns": [
+						{ 
+							"begin":"//",
+							"beginCaptures": {
+								"0":{
+									"name":"punctuation.definition.comment.glsl"
+								}
+							},
+							"end": "\\n",
+							"name":"comment.line.double-slash.glsl"
+						}
+					]
 				}
 			]
 		},

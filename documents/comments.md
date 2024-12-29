@@ -1,5 +1,8 @@
 ## /* */ comments
-we add 
+
+So inorder for styling comments we start with regular /* */ comments.
+
+For that we add 
 ```
 	{
 	"include": "#comments"
