@@ -54,8 +54,9 @@ Now that that's done we can see a folder with syntaxes folder and some other fil
 
 |  Name| Sequence | Link | 
 |--|--|--| 
-|  /**/|comment  |[a relative link](comments.md)|
+|  /**/|comment  |[./documents/](comments.md)|
 |  /**/|comment  | |
+
 
 
 
