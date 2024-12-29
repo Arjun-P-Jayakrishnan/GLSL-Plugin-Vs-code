@@ -91,6 +91,7 @@ Added features X, Y, and Z.
  - https://macromates.com/manual/en/language_grammars
  - https://stackoverflow.com/questions/30687783/create-custom-language-in-visual-studio-code
  - https://gamedev.stackexchange.com/questions/4234/what-are-the-pros-and-cons-of-hlsl-vs-glsl-vs-cg
+ - https://github.com/microsoft/vscode/blob/main/extensions/java/syntaxes/java.tmLanguage.json
 
 
 **Enjoy!**
