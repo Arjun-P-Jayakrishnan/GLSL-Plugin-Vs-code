@@ -45,5 +45,7 @@ Fixed issue #.
 Added features X, Y, and Z.
 
 ---
+## References
+https://macromates.com/manual/en/language_grammars
 
 **Enjoy!**
