@@ -52,6 +52,12 @@ Now that that's done we can see a folder with syntaxes folder and some other fil
    
  ## Research
 
+|  Name| Sequence | Link | 
+|--|--|--| 
+|  /**/|comment  |[a relative link](comments.md)|
+|  /**/|comment  | |
+
+
 
 
 
