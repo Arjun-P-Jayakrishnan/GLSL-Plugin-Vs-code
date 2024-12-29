@@ -51,82 +51,11 @@ glsl and hlsl both use CG by Nvidia but are both entirely different as hlsl is m
 Now that that's done we can see a folder with syntaxes folder and some other files.
    
  ## Research
-### Text Mate Grammar
-
- - **name** - `"name": "keyword.control.glsl"`  which is used to show syntax styling and scope-specific-setting  and actions (idk) which means it should be derived from one of the standard names.
- - **match** - `"match": "\\b(if|while|for|return)\\b"` is used for identifying a portion of text to which the name is specified. **Note** match is only used for single line use case.
- - **begin , end** - 
-
-```
-	 "name": "string.quoted.double.glsl",
-        "begin": "\"",
-        "end": "\"",
-        "patterns": [{
-        	"name": "constant.character.escape.glsl",
-        	"match": "\\\\."
-        	}]
-```
-As shown above it does not have any match statement along with it but inside the patterns.**begin , end** is mainly used for multiline code selection e.g. think of curly braces, multiline comments etc.
 
 
-###	Training You To Write it
 
-Lets start with one an only thing all programming languages need ! comments.
 
-For e.g. in `glsl` comments are single line comments such as `\\ comment` and multi line comments such as `\* whatever you want to write *\` .
-so in order to look for that we first look for multiline comment `\*  *\`
-```
-"$schema": "<somlink as given by yo generator>",
-"name": "GLSL",
-"patterns": [
-	{
-	"include": "#comments"
-	}
-],
-"repository": {
-	"comments":{
-		"patterns":[
-			{
-				"captures": {
-					"0":{
-					"name":"punctuation.definition.comment.glsl"
-					}
-					},
-				"match": "/\\*\\*/",
-				"name":"comment.block.empty.glsl"
-					}
-				]
-			},
-},
-"scopeName": "source.glsl"
-```
-####	Explanation
 
-we add 
-```
-	{
-	"include": "#comments"
-	}
-```
-to let vs code look for comments and highlight
-Now we can let it know how to recognize one by the following grammar
-
-```
-"comments":{
-	"patterns":[
-	{
-		"captures": {
-		"0":{
-		"name":"punctuation.definition.comment.glsl"
-		}
-	},
-	"match": "/\\*\\*/",
-	"name":"comment.block.empty.glsl"
-	}
-	]
-},
-
-```
 
 ## Known Issues
 

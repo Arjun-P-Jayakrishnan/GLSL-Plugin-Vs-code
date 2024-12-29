@@ -3,33 +3,46 @@
 	"name": "GLSL",
 	"patterns": [
 		{
-			"include":"#comments"
-		},
-		{
-			"include":"#operators"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include":"#numbers"
-		},
-		{
-			"include":"#reserved-words"
-		},
-		{
-			"include":"#ctrl-statements"
+			"include": "#comments"
 		},
 		{
 			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
 		}
-		
 	],
 	"repository": {
-		
-		"reserved-words":{
-			"match":"\\b(gl_Position,gl_FragColor)\\b",
-			"name":"entity.name.function.member.tpl"
+		"comments":{
+			"patterns":[
+				{
+					"captures": {
+						"0":{
+							"name":"punctuation.definition.comment.glsl"
+						}
+					},
+					"match": "/\\*\\*/",
+					"name":"comment.block.empty.glsl"
+				},
+				{
+					"include":"#comments-inline"
+				}
+			]
+
+		},
+		"comments-inline":{
+			"patterns": [
+				{
+					"begin": "/\\*",
+					"captures": {
+						"0":{
+							"name":"punctuation.defenition.comment.glsl"
+						}
+					},
+					"end": "\\*/",
+					"name":"comment.block.glsl"
+				}
+			]
 		},
 		"keywords": {
 			"patterns": [{
