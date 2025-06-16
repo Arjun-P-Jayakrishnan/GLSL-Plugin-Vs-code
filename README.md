@@ -1,17 +1,20 @@
+# glsl-shaderlab README
 
-# GLSL Plugin For VS Code
-
-Vs-code extension for GL Shader Language (.glsl) syntax highlighting.
+This is the README for your extension "glsl-shaderlab". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
-Extension is designed to provide syntax highlights to your glsl code with the extensions ".glsl" ,".vert", and ".frag".
+Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-> Tip: I have actually given steps for doing it so that someone does this for others to look at. Thanks for the people on internet for data even though its hard to find any references.
+For example if there is an image subfolder under your extension project workspace:
+
+\!\[feature X\]\(images/feature-x.png\)
+
+> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
 ## Requirements
 
-GLSL syntax highlights are meant for `.glsl` or `.vert` or `.frag` files and hence advised to name them as such.
+If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
 ## Extension Settings
 
@@ -23,47 +26,6 @@ This extension contributes the following settings:
 
 * `myExtension.enable`: Enable/disable this extension.
 * `myExtension.thing`: Set to `blah` to do something.
-
-## Journey
-As i progressed on the idea of creating syntax highlighting for glsl i came across the notion might there not be one already existent. I then found out there is something called hlsl which sounded similar for glsl and is almost the same but then i read more turns out it is intended for directX.
-
-glsl and hlsl both use CG by Nvidia but are both entirely different as hlsl is microsoft platform specific while glsl is cross-platform.
-#### References
-
- - https://gamedev.stackexchange.com/questions/4234/what-are-the-pros-and-cons-of-hlsl-vs-glsl-vs-cg  
- - https://www.youtube.com/watch?v=ftug7sL-5kw	
-
-### Yeoman
- - Install `yeoman` generator using this command
-  `pnpm install -g yo generator-code` 
- >it is the recommended way but i had my issue with this due to permission which i solved by `Run as administrator` and `removing -g` (only do this if the previous command doesn't work !!!)
- - Run `yo code` which will pop open a window asking you to select a section
- > if this also has permission issue or is not running only way is take the path and replace yo with it, i.e. `yo code` to `<path\to\yo> code`.
- -  If for syntax purposes or custom language support select 
- `New Language Support`.
- - It will ask for details fill them out. 
- >Template i will add in sometime
- - Hurray!!! you got yourself a new extension setup.(a folder with the name of extension or detail that you gave will be created in the current working directory)
- - Navigate into the folder.
- 
- ### .tmLanguage
-
-Now that that's done we can see a folder with syntaxes folder and some other files.
-   
- ## Research
-
-|  Name| Sequence | Link | 
-|--|--|--| 
-| grammar |all data| [grammar](./documents/grammar.md) |
-| comment | /**/ |[comments](./documents/comments.md)|
-| inline comment |/** */ and //| [inline-comments](./documents/inline-comments.md) |
-
-
-
-
-
-
-
 
 ## Known Issues
 
@@ -86,12 +48,18 @@ Fixed issue #.
 Added features X, Y, and Z.
 
 ---
-## References
 
- - https://macromates.com/manual/en/language_grammars
- - https://stackoverflow.com/questions/30687783/create-custom-language-in-visual-studio-code
- - https://gamedev.stackexchange.com/questions/4234/what-are-the-pros-and-cons-of-hlsl-vs-glsl-vs-cg
- - https://github.com/microsoft/vscode/blob/main/extensions/java/syntaxes/java.tmLanguage.json
+## Working with Markdown
 
+You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+
+* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
+* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
+* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+
+## For more information
+
+* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
