@@ -19,14 +19,32 @@
   "contributes": {
     "languages": [
       {
-        "id": ".glsl,.vert,.frag",
+        "id": "glsl",
         "aliases": [
-          "GLSL Shader Language",
-          ".glsl,.vert,.frag"
+          "GLSL"
         ],
         "extensions": [
-          ".glsl",
-          ".vert",
+          ".glsl"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "glsl-vert",
+        "aliases": [
+          "GLSL Vertex Shader"
+        ],
+        "extensions": [
+          ".vert"
+        ],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "glsl-frag",
+        "aliases": [
+          "GLSL Fragment Shader Language",
+          ".frag"
+        ],
+        "extensions": [
           ".frag"
         ],
         "configuration": "./language-configuration.json"
@@ -34,9 +52,19 @@
     ],
     "grammars": [
       {
-        "language": ".glsl,.vert,.frag",
+        "language": "glsl",
         "scopeName": "source.glsl",
-        "path": "./syntaxes/.glsl,.vert,.frag.tmLanguage.json"
+        "path": "./syntaxes/glsl.tmLanguage.json"
+      },
+      {
+        "language": "glsl-vert",
+        "scopeName": "source.glsl-vert",
+        "path": "./syntaxes/vert.tmLanguage.json"
+      },
+      {
+        "language": "glsl-frag",
+        "scopeName": "source.glsl-frag",
+        "path": "./syntaxes/frag.tmLanguage.json"
       }
     ],
     "commands": [
