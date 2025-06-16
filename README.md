@@ -1,65 +1,113 @@
-# glsl-shaderlab README
+# GLSL ShaderLab
 
-This is the README for your extension "glsl-shaderlab". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+[![Version](https://img.shields.io/badge/version-0.0.1-blue.svg)]()
+[![VSCode](https://img.shields.io/badge/VSCode-1.101.0+-blue.svg)]()
+[![Category](https://img.shields.io/badge/category-Programming%20Languages-orange.svg)]()
 
 ---
 
-## Working with Markdown
+**GLSL ShaderLab** is a VSCode extension for developing, editing, and previewing GLSL shaders with full language support and live WebGL rendering.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+---
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+## ✨ Features
 
-## For more information
+- ✅ Syntax highlighting for:
+  - `.glsl` (generic GLSL)
+  - `.vert` (vertex shaders)
+  - `.frag` (fragment shaders)
+- ✅ Stage-specific grammars:
+  - Vertex and Fragment builtins highlighted separately
+  - Accurate scopes for control flow and loop keywords
+- ✅ Comment and string highlighting
+- ✅ Escape sequences inside strings
+- ✅ Live WebGL preview (initial implementation)
+- ✅ Clean, scalable multi-language architecture
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+---
 
-**Enjoy!**
+## 🚀 Getting Started
+
+1. Clone or install the extension.
+2. Open your shader files:
+   - `*.glsl` → generic GLSL
+   - `*.vert` → vertex shader
+   - `*.frag` → fragment shader
+3. Press `F5` in VSCode to launch Extension Development Host for testing.
+
+---
+
+## 📂 Language Support
+
+| Extension | Shader Type     |
+| --------- | --------------- |
+| `.glsl`   | Generic GLSL    |
+| `.vert`   | Vertex shader   |
+| `.frag`   | Fragment shader |
+
+---
+
+## 🎨 Syntax Highlighting
+
+- Control Flow Keywords:
+  - `if`, `else`, `return`, `break`, `continue`, `discard`
+- Loop Keywords:
+  - `for`, `while`, `do`
+- Strings with escape sequences (`\"`, `\\`, etc.)
+- Single-line (`//`) and multi-line (`/* ... */`) comments
+- Built-in Variables:
+  - Vertex: `gl_Position`, `gl_VertexID`, `gl_InstanceID`
+  - Fragment: `gl_FragColor`, `gl_FragCoord`, `gl_FrontFacing`
+
+---
+
+## 🔬 Scopes Used
+
+| Scope                             | Description              |
+| --------------------------------- | ------------------------ |
+| `keyword.control.flow.glsl`       | Flow control             |
+| `keyword.control.loop.glsl`       | Looping keywords         |
+| `string.quoted.double.glsl`       | Double quoted strings    |
+| `constant.character.escape.glsl`  | Escape characters        |
+| `comment.line.double-slash.glsl`  | Single-line comments     |
+| `comment.block.glsl`              | Multi-line comments      |
+| `variable.language.glsl.vertex`   | Vertex shader builtins   |
+| `variable.language.glsl.fragment` | Fragment shader builtins |
+
+---
+
+## 🔧 Future Roadmap
+
+- Add full type highlighting (`int`, `float`, `vec3`, `mat4`, etc.)
+- Add built-in function highlighting (`sin()`, `mix()`, `normalize()`, etc.)
+- Add uniforms, attributes, and qualifiers
+- Improve live preview engine with full WebGL rendering
+- Add validation and error reporting (GLSL parser integration)
+- Optional: Vulkan/SPIR-V integration in future
+
+---
+
+## 📦 Why multiple language IDs?
+
+This extension separates shader stages into multiple language IDs:
+
+| Language ID | File Extension |
+| ----------- | -------------- |
+| `glsl`      | `.glsl`        |
+| `glsl-vert` | `.vert`        |
+| `glsl-frag` | `.frag`        |
+
+This allows better stage-specific highlighting and preview control.
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Arjun P J**  
+Shader developer | VSCode extension author
+
+---
+
+## 📄 License
+
+[MIT License](LICENSE)
