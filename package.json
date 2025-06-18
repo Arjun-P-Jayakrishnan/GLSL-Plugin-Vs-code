@@ -73,5 +73,12 @@
         "title": "GLSL: Show Live Preview"
       }
     ]
+  },
+  "dependencies": {
+    "tsc": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.101.0",
+    "typescript": "^5.8.3"
   }
 }
