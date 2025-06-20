@@ -1,40 +1,69 @@
+import * as fs from "fs";
 import * as vscode from "vscode";
 
+// Vs code required functions for preview
 export function activate(context: vscode.ExtensionContext) {
-  console.log("GLSL ShaderLab extension is live");
+  console.log("Activate");
 
-  let disposable = vscode.commands.registerCommand(
+  console.log(`Console.ing to check if vs code activates`);
+
+  const command = vscode.commands.registerCommand(
     "glslShaderLab.showPreview",
     () => {
-      const panel = vscode.window.createWebviewPanel(
-        "glslPreview",
-        "GLSL Live Preview",
-        vscode.ViewColumn.Beside,
-        { enableScripts: true }
-      );
-
-      panel.webview.html = getWebviewContent();
+      _createPanel(context);
     }
   );
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(command);
 }
 
-function getWebviewContent(): string {
-  return `
-    <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-            <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'nonce-XYZ123'; style-src 'unsafe-inline';">
-        </head>
-        <body>
-            
-        </body>
-    </html>
-  `;
-}
-
+//vs code required function for closing
 export function deactivate() {}
+
+/**
+ * @description retrives the thml to be displayed in form of string
+ * @param context vs code extension context
+ * @returns html stringified
+ */
+function getWebviewContent(
+  context: vscode.ExtensionContext,
+  scriptUri: vscode.Uri
+): string {
+  const htmlPath = vscode.Uri.joinPath(
+    context.extensionUri,
+    "out",
+    "webview",
+    "index.html"
+  );
+  let html: string = fs.readFileSync(htmlPath.fsPath, "utf8");
+
+  html = html.replace("__SCRIPT__", scriptUri.toString());
+  console.log(html);
+  return html;
+}
+
+/**
+ * @description web view panel creation and html linking
+ * @param context vs code extension context
+ */
+function _createPanel(context: vscode.ExtensionContext) {
+  console.log("Creating webview");
+  const panel: vscode.WebviewPanel = vscode.window.createWebviewPanel(
+    "glslPreview",
+    "GLSL Live Preview",
+    vscode.ViewColumn.Beside,
+    {
+      enableScripts: true,
+      localResourceRoots: [vscode.Uri.joinPath(context.extensionUri)],
+    }
+  );
+  const scriptPathOnDisk = vscode.Uri.joinPath(
+    context.extensionUri,
+    "out",
+    "webview",
+    "index.js"
+  );
+  const scriptUri = panel.webview.asWebviewUri(scriptPathOnDisk);
+  console.log("script uri", scriptUri);
+  panel.webview.html = getWebviewContent(context, scriptUri);
+}
