@@ -2,3 +2,25 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+
+
+# Ignore Vite build setup
+vite.config.ts
+webview/*
+!webview/dist/**
+
+# Ignore source files
+src/webview/**
+*.ts
+*.tsx
+*.scss
+*.css
+
+
+# Ignore dev folders
+node_modules/
+!node_modules/vscode/**  # if needed
+
+# Optional: Ignore test & config
+*.test.*
+jest.config.js
