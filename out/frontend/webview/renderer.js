@@ -1,5 +1,26 @@
+import { fragmentShaderSample } from "../sample/frag.js";
+import { vertexShaderSample } from "../sample/vert.js";
+import { Vector3 } from "../utils/vector.js";
 import { selectFile } from "./messaging.js";
+import { lookAt, makePerspective } from "./scene/camera.js";
+import { createAndBindBuffer, cubeIndices, cubeVertices, } from "./scene/default_shapes.js";
 import { createProgram } from "./shader.js";
+function createAndUseProgram(gl, vertexSource, fragmentSource) {
+    const program = createProgram(gl, vertexSource, fragmentSource);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        const infoLog = gl.getProgramInfoLog(program);
+        console.error(`Program link error :${infoLog}`);
+        throw new Error(`Program  link error ${infoLog}`);
+    }
+    gl.useProgram(program);
+    return program;
+}
+function setUniformMatrices(gl, program, projectionMatrix, viewMatrix) {
+    const uProjection = gl.getUniformLocation(program, "uProjection");
+    const uView = gl.getUniformLocation(program, "uView");
+    gl.uniformMatrix4fv(uProjection, false, projectionMatrix);
+    gl.uniformMatrix4fv(uView, false, viewMatrix);
+}
 /**
  *
  */
@@ -16,18 +37,11 @@ const RunShaderPreview = (vertexShaderSource, fragmentShaderSource) => {
             selectFile();
         });
     }
-    const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-        console.error("Program link error:", gl.getProgramInfoLog(program));
-        throw new Error(`Program link error: ${gl.getProgramInfoLog(program)}`);
-    }
-    gl.useProgram(program);
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, 0, 1]), gl.STATIC_DRAW);
-    const position = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(position);
-    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    const projectionMatrix = makePerspective(Math.PI / 4, 4 / 3, 0.1, 100);
+    const viewMatrix = lookAt(Vector3({ x: 0, y: 0, z: 0 }), Vector3({ x: 0, y: 0, z: 0 }), Vector3({ x: 0, y: 1, z: 0 }));
+    const program = createAndUseProgram(gl, vertexShaderSample, fragmentShaderSample);
+    setUniformMatrices(gl, program, projectionMatrix, viewMatrix);
+    createAndBindBuffer(gl, cubeVertices, cubeIndices, program);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 };
 export { RunShaderPreview };

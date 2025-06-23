@@ -75,6 +75,7 @@
   "dependencies": {
     "tsc": "^2.0.4"
   },
+  "type": "module",
   "devDependencies": {
     "@types/node": "^24.0.3",
     "@types/vscode": "^1.101.0",

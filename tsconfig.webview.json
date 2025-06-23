@@ -9,5 +9,6 @@
     "esModuleInterop": true,
     "strict": true
   },
-  "include": ["src/frontend"]
+  "include": ["src/frontend"],
+  "exclude": ["src/backend", "src/extension.ts"]
 }
