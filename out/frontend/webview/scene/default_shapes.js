@@ -27,6 +27,6 @@ function createAndBindBuffer(gl, vertexData, indices, program) {
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
     const positionAttribute = gl.getAttribLocation(program, "position");
     gl.enableVertexAttribArray(positionAttribute);
-    gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(positionAttribute, 3, gl.FLOAT, false, 0, 0);
 }
 export { createAndBindBuffer, cubeIndices, cubeVertices };

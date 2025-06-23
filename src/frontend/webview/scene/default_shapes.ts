@@ -36,7 +36,7 @@ function createAndBindBuffer(
 
   const positionAttribute = gl.getAttribLocation(program, "position");
   gl.enableVertexAttribArray(positionAttribute);
-  gl.vertexAttribPointer(positionAttribute, 2, gl.FLOAT, false, 0, 0);
+  gl.vertexAttribPointer(positionAttribute, 3, gl.FLOAT, false, 0, 0);
 }
 
 export { createAndBindBuffer, cubeIndices, cubeVertices };

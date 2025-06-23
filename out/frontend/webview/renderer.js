@@ -37,11 +37,12 @@ const RunShaderPreview = (vertexShaderSource, fragmentShaderSource) => {
             selectFile();
         });
     }
-    const projectionMatrix = makePerspective(Math.PI / 4, 4 / 3, 0.1, 100);
-    const viewMatrix = lookAt(Vector3({ x: 0, y: 0, z: 0 }), Vector3({ x: 0, y: 0, z: 0 }), Vector3({ x: 0, y: 1, z: 0 }));
+    const projectionMatrix = makePerspective(Math.PI / 3, 4 / 3, 0.1, 100);
+    const viewMatrix = lookAt(Vector3({ x: 0, y: 0, z: 0 }), Vector3({ x: 0, y: 0, z: 5 }), Vector3({ x: 0, y: 1, z: 0 }));
+    console.log(projectionMatrix, viewMatrix);
     const program = createAndUseProgram(gl, vertexShaderSample, fragmentShaderSample);
     setUniformMatrices(gl, program, projectionMatrix, viewMatrix);
     createAndBindBuffer(gl, cubeVertices, cubeIndices, program);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.drawElements(gl.TRIANGLES, cubeIndices.length, gl.UNSIGNED_SHORT, 0);
 };
 export { RunShaderPreview };
