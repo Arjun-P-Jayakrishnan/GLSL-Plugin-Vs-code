@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { getWebviewHTML } from "../panel/htmlGenerator";
 import { createWebviewPanel } from "../panel/panel";
 import { RegisterMessagePipeline } from "../pipeline/message";
+import { SHADER_PREVIEW } from "../types/commands";
 
 export function registerShaderPreview(
   context: vscode.ExtensionContext
@@ -16,10 +17,7 @@ export function registerShaderPreview(
     RegisterMessagePipeline(panel);
   };
 
-  const command = vscode.commands.registerCommand(
-    "glslShaderLab.showPreview",
-    setup
-  );
+  const command = vscode.commands.registerCommand(SHADER_PREVIEW, setup);
 
   return command;
 }

@@ -1,3 +1,3 @@
-type Messages = "selectFile";
+type MessageType = "selectFile";
 
-export type { Messages };
+export type { MessageType };

@@ -68,11 +68,15 @@ const RunShaderPreview = (
   const projectionMatrix = makePerspective(Math.PI / 4, 4 / 3, 0.1, 100);
   const viewMatrix = lookAt(
     Vector3({ x: 0, y: 0, z: 0 }),
-    Vector3({ x: 0, y: 0, z: 5 }),
+    Vector3({ x: 0, y: 0, z: 20 }),
     Vector3({ x: 0, y: 1, z: 0 })
   );
 
   console.log(projectionMatrix, viewMatrix);
+
+  gl.enable(gl.DEPTH_TEST);
+  gl.clearColor(0, 0, 0, 1.0);
+  gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
   const program = createAndUseProgram(
     gl,
@@ -81,7 +85,7 @@ const RunShaderPreview = (
   );
   setUniformMatrices(gl, program, projectionMatrix, viewMatrix);
   createAndBindBuffer(gl, cubeVertices, cubeIndices, program);
-  gl.drawArrays(gl.TRIANGLES, cubeIndices.length, gl.UNSIGNED_SHORT);
+  gl.drawElements(gl.LINES, cubeIndices.length, gl.UNSIGNED_SHORT, 0);
 };
 
 export { RunShaderPreview };
