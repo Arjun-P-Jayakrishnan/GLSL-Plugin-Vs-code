@@ -1,10 +1,11 @@
 import * as vscode from "vscode";
+import { router } from "../router/messageRouter";
 
 /**
  * @description open file
  * @param panel panel given by vs code
  */
-const openFile = async (panel: vscode.WebviewPanel) => {
+const openFile = async (): Promise<void> => {
   //Allow user to select files in current workspace
   const uri = await vscode.window.showOpenDialog({
     canSelectMany: false,
@@ -20,9 +21,8 @@ const openFile = async (panel: vscode.WebviewPanel) => {
     //Convert Uint8Array to string (assuming UTF-8 encoding)
     const code = new TextDecoder("utf-8").decode(fileData);
 
-    panel.webview.postMessage({
-      type: "updateShader",
-      payload: { code: code },
-    });
+    router.send({ type: "update-shader", payload: { code: code } });
   }
 };
+
+export { openFile };

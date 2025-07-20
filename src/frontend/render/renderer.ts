@@ -1,14 +1,15 @@
+import { router } from "../router/messageRouter.js";
 import { fragmentShaderSample } from "../sample/frag.js";
 import { vertexShaderSample } from "../sample/vert.js";
+import { createProgram } from "../shader/shader.js";
 import { Vector3 } from "../utils/vector.js";
-import { selectFile } from "./messaging.js";
+
 import { lookAt, makePerspective } from "./scene/camera.js";
 import {
   createAndBindBuffer,
   cubeIndices,
   cubeVertices,
 } from "./scene/default_shapes.js";
-import { createProgram } from "./shader.js";
 
 type Nullable<T> = T | null;
 
@@ -61,7 +62,10 @@ const RunShaderPreview = (
   if (btn) {
     btn.addEventListener("click", (e) => {
       console.log("button clicked to select file");
-      selectFile();
+      router.send({
+        type: "select-file",
+        payload: {},
+      });
     });
   }
 

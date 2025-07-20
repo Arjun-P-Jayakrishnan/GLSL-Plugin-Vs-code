@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import { getWebviewHTML } from "../panel/htmlGenerator";
 import { createWebviewPanel } from "../panel/panel";
-import { RegisterMessagePipeline } from "../pipeline/message";
+import { router } from "../router/messageRouter";
+import { monitorEvents } from "../router/messges";
 import { SHADER_PREVIEW } from "../types/commands";
 
 export function registerShaderPreview(
@@ -14,7 +15,9 @@ export function registerShaderPreview(
     panel.webview.html = getWebviewHTML(context, panel);
 
     /**Registers pipeline */
-    RegisterMessagePipeline(panel);
+    router.init(panel);
+    monitorEvents();
+    router.listen();
   };
 
   const command = vscode.commands.registerCommand(SHADER_PREVIEW, setup);
