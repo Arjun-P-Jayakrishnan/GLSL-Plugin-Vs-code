@@ -1,4 +1,5 @@
 import * as vscode from "vscode";
+import { registerSaveWatcher } from "../handlers/file";
 import { getWebviewHTML } from "../panel/htmlGenerator";
 import { createWebviewPanel } from "../panel/panel";
 import { router } from "../router/messageRouter";
@@ -18,6 +19,8 @@ export function registerShaderPreview(
     router.init(panel);
     monitorEvents();
     router.listen();
+
+    registerSaveWatcher(context);
   };
 
   const command = vscode.commands.registerCommand(SHADER_PREVIEW, setup);
