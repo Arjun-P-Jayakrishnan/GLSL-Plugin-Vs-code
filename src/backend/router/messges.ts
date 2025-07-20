@@ -1,4 +1,4 @@
-import { openFile } from "../services/file";
+import { openFile } from "../handlers/file";
 import { router } from "./messageRouter";
 
 function monitorEvents() {

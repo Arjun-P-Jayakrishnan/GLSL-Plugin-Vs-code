@@ -9,7 +9,7 @@ function compileShader(
 
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
-  console.log(shader, source);
+  // console.log(shader, source);
 
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
     const error = document.getElementById("error-text") as HTMLElement;
@@ -26,9 +26,9 @@ function createProgram(
   vertexSource: string,
   fragmentSource: string
 ): WebGLProgram {
-  console.log("vertex");
+  // console.log("vertex");
   const vertShader = compileShader(gl, vertexSource, gl.VERTEX_SHADER);
-  console.log("fragment");
+  // console.log("fragment");
   const fragShader = compileShader(gl, fragmentSource, gl.FRAGMENT_SHADER);
 
   const program = gl.createProgram();
@@ -39,4 +39,30 @@ function createProgram(
   return program;
 }
 
-export { createProgram };
+/**
+ *
+ * @param gl gl
+ * @param vertexSource vertex shader
+ * @param fragmentSource fragment shader
+ * @returns
+ */
+function createAndUseProgram(
+  gl: WebGLRenderingContext,
+  vertexSource: string,
+  fragmentSource: string
+): WebGLProgram {
+  const program = createProgram(gl, vertexSource, fragmentSource);
+
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    const infoLog = gl.getProgramInfoLog(program);
+
+    console.error(`Program link error :${infoLog}`);
+    throw new Error(`Program  link error ${infoLog}`);
+  }
+
+  gl.useProgram(program);
+
+  return program;
+}
+
+export { createAndUseProgram, createProgram };

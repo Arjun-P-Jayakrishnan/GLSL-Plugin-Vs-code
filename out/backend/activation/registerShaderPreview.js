@@ -37,7 +37,9 @@ exports.registerShaderPreview = registerShaderPreview;
 const vscode = __importStar(require("vscode"));
 const htmlGenerator_1 = require("../panel/htmlGenerator");
 const panel_1 = require("../panel/panel");
-const message_1 = require("../pipeline/message");
+const messageRouter_1 = require("../router/messageRouter");
+const messges_1 = require("../router/messges");
+const commands_1 = require("../types/commands");
 function registerShaderPreview(context) {
     const setup = () => {
         //Create a right side webview panel
@@ -45,9 +47,11 @@ function registerShaderPreview(context) {
         //Add HTML content
         panel.webview.html = (0, htmlGenerator_1.getWebviewHTML)(context, panel);
         /**Registers pipeline */
-        (0, message_1.RegisterMessagePipeline)(panel);
+        messageRouter_1.router.init(panel);
+        (0, messges_1.monitorEvents)();
+        messageRouter_1.router.listen();
     };
-    const command = vscode.commands.registerCommand("glslShaderLab.showPreview", setup);
+    const command = vscode.commands.registerCommand(commands_1.SHADER_PREVIEW, setup);
     return command;
 }
 //# sourceMappingURL=registerShaderPreview.js.map

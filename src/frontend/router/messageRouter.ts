@@ -4,7 +4,7 @@ import {
   RecieveMessage,
   RecieveMessageType,
   SendMessage,
-} from "../types/message";
+} from "../types/message.js";
 
 declare const acquireVsCodeApi: () => {
   postMessage: (message: any) => void;
