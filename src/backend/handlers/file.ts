@@ -21,6 +21,8 @@ const openFile = async (): Promise<void> => {
     //Convert Uint8Array to string (assuming UTF-8 encoding)
     const code = new TextDecoder("utf-8").decode(fileData);
 
+    console.log("code", code);
+
     router.send({ type: "update-shader", payload: { code: code } });
   }
 };

@@ -18,7 +18,8 @@ async function _onDidRecieveMessage(
   }
 
   try {
-    await handler(message.payload);
+    console.log("message ", message);
+    await handler(message);
   } catch (error) {
     console.error(`Error in handler for command ${handler}`);
   }

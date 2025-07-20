@@ -25,7 +25,7 @@ interface MessageRouter {
 }
 
 type SendMessageTypes = "select-file";
-type RecieveMessageType = "shader-file";
+type RecieveMessageType = "update-shader";
 
 export {
   Handler,

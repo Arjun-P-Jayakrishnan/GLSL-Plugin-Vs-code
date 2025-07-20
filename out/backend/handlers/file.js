@@ -53,6 +53,7 @@ const openFile = async () => {
         const fileData = await vscode.workspace.fs.readFile(fileUri);
         //Convert Uint8Array to string (assuming UTF-8 encoding)
         const code = new TextDecoder("utf-8").decode(fileData);
+        console.log("code", code);
         messageRouter_1.router.send({ type: "update-shader", payload: { code: code } });
     }
 };
