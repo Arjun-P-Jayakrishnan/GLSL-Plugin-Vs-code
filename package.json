@@ -12,7 +12,7 @@
   "main": "./out/extension.js",
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
-    "build": "node build.js"
+    "build": "node build.mjs"
   },
   "contributes": {
     "languages": [
@@ -24,7 +24,7 @@
         "extensions": [
           ".glsl"
         ],
-        "configuration": "./src/config/language-configuration.json"
+        "configuration": "./config/language-configuration.json"
       },
       {
         "id": "glsl-vert",
@@ -34,7 +34,7 @@
         "extensions": [
           ".vert"
         ],
-        "configuration": "./src/config/language-configuration.json"
+        "configuration": "./config/language-configuration.json"
       },
       {
         "id": "glsl-frag",
@@ -45,24 +45,24 @@
         "extensions": [
           ".frag"
         ],
-        "configuration": "./src/config/language-configuration.json"
+        "configuration": "./config/language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "glsl",
         "scopeName": "source.glsl",
-        "path": "./src/syntaxes/glsl.tmLanguage.json"
+        "path": "./syntaxes/glsl.tmLanguage.json"
       },
       {
         "language": "glsl-vert",
         "scopeName": "source.glsl-vert",
-        "path": "./src/syntaxes/vert.tmLanguage.json"
+        "path": "./syntaxes/vert.tmLanguage.json"
       },
       {
         "language": "glsl-frag",
         "scopeName": "source.glsl-frag",
-        "path": "./src/syntaxes/frag.tmLanguage.json"
+        "path": "./syntaxes/frag.tmLanguage.json"
       }
     ],
     "commands": [
