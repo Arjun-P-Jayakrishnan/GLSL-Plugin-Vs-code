@@ -1,5 +1,5 @@
-import { vertexShaderSample } from "../sample/vert";
-import { createAndUseProgram } from "../shader/shader";
+import { vertexShaderSample } from "../sample/vert2D.js";
+import { createAndUseProgram } from "../shader/shader.js";
 
 // Full-screen quad in clip space
 const quadVertices = new Float32Array([
@@ -14,6 +14,8 @@ function render2D(gl: WebGLRenderingContext, fragmentShaderSource: string) {
     vertexShaderSample,
     fragmentShaderSource
   );
+
+  console.log("shader", fragmentShaderSource);
 
   // Look up the attribute location
   const aPosition = gl.getAttribLocation(program, "aPosition");

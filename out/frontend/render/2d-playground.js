@@ -1,5 +1,5 @@
-import { vertexShaderSample } from "../sample/vert";
-import { createAndUseProgram } from "../shader/shader";
+import { vertexShaderSample } from "../sample/vert2D.js";
+import { createAndUseProgram } from "../shader/shader.js";
 // Full-screen quad in clip space
 const quadVertices = new Float32Array([
     -1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 1.0, 1.0, 0.0, -1.0, 1.0, 0.0,
@@ -7,6 +7,7 @@ const quadVertices = new Float32Array([
 const quadIndices = new Uint16Array([0, 1, 2, 2, 3, 0]);
 function render2D(gl, fragmentShaderSource) {
     const program = createAndUseProgram(gl, vertexShaderSample, fragmentShaderSource);
+    console.log("shader", fragmentShaderSource);
     // Look up the attribute location
     const aPosition = gl.getAttribLocation(program, "aPosition");
     // Create and bind the vertex buffer
