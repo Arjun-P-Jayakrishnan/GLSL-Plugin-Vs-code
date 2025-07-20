@@ -76,8 +76,6 @@ const RunShaderPreview = (
     Vector3({ x: 0, y: 1, z: 0 })
   );
 
-  console.log(projectionMatrix, viewMatrix);
-
   gl.enable(gl.DEPTH_TEST);
   gl.clearColor(0, 0, 0, 1.0);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
