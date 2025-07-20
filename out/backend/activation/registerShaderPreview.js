@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerShaderPreview = registerShaderPreview;
 const vscode = __importStar(require("vscode"));
+const file_1 = require("../handlers/file");
 const htmlGenerator_1 = require("../panel/htmlGenerator");
 const panel_1 = require("../panel/panel");
 const messageRouter_1 = require("../router/messageRouter");
@@ -50,6 +51,7 @@ function registerShaderPreview(context) {
         messageRouter_1.router.init(panel);
         (0, messges_1.monitorEvents)();
         messageRouter_1.router.listen();
+        (0, file_1.registerSaveWatcher)(context);
     };
     const command = vscode.commands.registerCommand(commands_1.SHADER_PREVIEW, setup);
     return command;

@@ -33,9 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.openFile = void 0;
+exports.registerSaveWatcher = exports.openFile = void 0;
 const vscode = __importStar(require("vscode"));
 const messageRouter_1 = require("../router/messageRouter");
+let selectedFileUri;
 /**
  * @description open file
  * @param panel panel given by vs code
@@ -48,14 +49,26 @@ const openFile = async () => {
     });
     //use the uri
     if (uri !== undefined && uri.length > 0) {
-        const fileUri = uri[0];
-        //Read file as Uint8Array
-        const fileData = await vscode.workspace.fs.readFile(fileUri);
-        //Convert Uint8Array to string (assuming UTF-8 encoding)
-        const code = new TextDecoder("utf-8").decode(fileData);
-        console.log("code", code);
-        messageRouter_1.router.send({ type: "update-shader", payload: { code: code } });
+        selectedFileUri = uri[0];
+        readAndSendFile(selectedFileUri);
     }
 };
 exports.openFile = openFile;
+const readAndSendFile = async (uri) => {
+    //Read file as Uint8Array
+    const fileData = await vscode.workspace.fs.readFile(uri);
+    //Convert Uint8Array to string (assuming UTF-8 encoding)
+    const code = new TextDecoder("utf-8").decode(fileData);
+    console.log("code", code);
+    messageRouter_1.router.send({ type: "update-shader", payload: { code: code } });
+};
+const registerSaveWatcher = (context) => {
+    const disposable = vscode.workspace.onDidSaveTextDocument((doc) => {
+        if (selectedFileUri && doc.uri.fsPath === selectedFileUri.fsPath) {
+            readAndSendFile(selectedFileUri);
+        }
+    });
+    context.subscriptions.push(disposable);
+};
+exports.registerSaveWatcher = registerSaveWatcher;
 //# sourceMappingURL=file.js.map
