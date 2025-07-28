@@ -2,80 +2,175 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'; style-src 'self';"
-    /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GLSL Shader Preview</title>
     <style>
+      :root {
+        --color-bg: #1a1a1a;
+        --color-bg-secondary: #2a2a2a;
+        --color-text: #f0f0f0;
+        --color-accent: #09f;
+        --min-page-width: 450px;
+      }
+
+      /* Reset & Base Styles */
       * {
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
+
+      html,
       body {
-        width: 100vw;
-        height: 100vh;
+        height: 100%;
+        min-width: var(--min-page-width);
+        overflow-x: hidden;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        padding: 0em;
       }
 
+      /* ===== Header (Top Navigation Bar) ===== */
       header {
-        height: 10%;
-        width: 100%;
-
+        background-color: var(--color-bg-secondary);
         display: flex;
-        flex-direction: row;
         justify-content: space-between;
         align-items: center;
-      }
-      .hamburger-menu {
-        background: transparent;
-        border: none;
-        color: white;
-      }
-
-      main {
+        padding: 0.5rem 1rem;
         width: 100%;
-        height: 80%;
-        background-color: rgb(0, 0, 0);
       }
 
-      .options {
+      .app-logo {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--color-accent);
+      }
+
+      .nav-bar {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .nav-button {
+        background: none;
+        border: none;
+        color: var(--color-text);
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0.3rem 0.6rem;
+      }
+
+      .nav-button:hover {
+        background-color: #333;
+        border-radius: 4px;
+      }
+
+      /* Dropdown Menu */
+      .menu {
+        position: relative;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--color-bg-secondary);
+        border: 1px solid #333;
+        display: none;
+        flex-direction: column;
+        min-width: 160px;
         z-index: 10;
-        top: 5%;
-        right: 5%;
+      }
+
+      .menu:hover .dropdown {
+        display: flex;
+      }
+
+      .dropdown-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        color: var(--color-text);
+      }
+
+      .dropdown-item:hover {
+        background-color: #444;
+      }
+
+      /* ===== Main Content (Canvas Area) ===== */
+      main {
+        flex-grow: 1;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
       }
 
       #glcanvas {
         width: 100%;
         height: 100%;
+        display: block;
+        object-fit: cover;
       }
 
-      footer {
-        height: 10%;
-        width: 100%;
-
+      /* ===== Footer (Bottom Status Bar) ===== */
+      footer.status-bar {
+        background-color: var(--color-bg-secondary);
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        padding: 0.5rem 1rem;
+        width: 100%;
+        font-size: 0.9rem;
+        border-top: 1px solid #333;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .status-item {
+        color: var(--color-text);
+        white-space: nowrap;
+        text-align: center;
+        flex: 1;
+        min-width: 120px;
       }
     </style>
   </head>
   <body>
+    <!-- ===== Top Navigation Bar ===== -->
     <header>
-      <h1>GLSL Shader Preview</h1>
-      <button class="hamburger-menu">☰</button>
+      <div class="app-logo">🌀 ShaderLab</div>
+      <nav class="nav-bar">
+        <div class="menu">
+          <button class="nav-button">File ▾</button>
+          <div class="dropdown">
+            <label id="selectBtn" for="shaderInput" class="dropdown-item"
+              >Open Shader</label
+            >
+          </div>
+        </div>
+        <button class="nav-button">Edit</button>
+        <button class="nav-button">Settings</button>
+        <button class="nav-button">Help</button>
+      </nav>
     </header>
+
+    <!-- ===== Shader Canvas Area ===== -->
     <main>
-      <!-- <div class="options">
-        <ul></ul>
-      </div> -->
-      <canvas id="glcanvas" width="800" height="600"></canvas>
+      <canvas id="glcanvas"></canvas>
     </main>
-    <footer>
-      <h3 id="error-text"></h3>
-      <h3>FPS: 60fps</h3>
-      <button id="selectBtn">Select Fragment Shader</button>
+
+    <!-- ===== Bottom Status Bar ===== -->
+    <footer class="status-bar">
+      <div class="status-item" id="error-text">⚠ No Errors</div>
+      <div class="status-item">🎮 FPS: <span id="fps">60</span></div>
+      <div class="status-item">
+        🎨 Shader: <span id="active-shader">none</span>
+      </div>
     </footer>
+
+    <!-- ===== WebGL Shader Script ===== -->
     <script type="module" src="__SCRIPT__"></script>
   </body>
 </html>
