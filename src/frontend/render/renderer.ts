@@ -17,7 +17,7 @@ const RunShaderPreview = (
     throw new Error(`Web GL not supported`);
   }
 
-  const btn = document.getElementById("selectBtn") as HTMLButtonElement;
+  const btn = document.getElementById("selectBtn") as HTMLLabelElement;
   if (btn) {
     btn.addEventListener("click", (e) => {
       console.log("button clicked to select file");
