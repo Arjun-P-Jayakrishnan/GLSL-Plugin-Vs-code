@@ -1,4 +1,4 @@
-import { router } from "../router/messageRouter.js";
+import { router } from "../core/router/messageRouter.js";
 import { render2D } from "./2d-playground.js";
 
 type Nullable<T> = T | null;

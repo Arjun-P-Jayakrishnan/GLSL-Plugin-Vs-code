@@ -1,5 +1,5 @@
-import { handleShader } from "../handlers/shader.js";
-import { router } from "./messageRouter.js";
+import { handleShader } from "../../handlers/shader.js";
+import { router } from "../router/messageRouter.js";
 
 function monitorEvents() {
   router.register({ type: "update-shader", payload: {} }, handleShader);

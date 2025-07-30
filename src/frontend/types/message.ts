@@ -15,7 +15,7 @@ interface MessageRouter {
   init: () => void;
 
   //Registers all handlers
-  register: (message: RecieveMessage, handler: Handler) => void;
+  register: (message: RecieveMessageType, handler: Handler) => void;
 
   //Listen to incomming data
   listen: () => void;
