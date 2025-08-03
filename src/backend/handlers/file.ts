@@ -33,14 +33,4 @@ const readAndSendFile = async (uri: vscode.Uri): Promise<void> => {
   router.send({ type: "update-shader", payload: { code: code } });
 };
 
-const registerSaveWatcher = (context: vscode.ExtensionContext) => {
-  const disposable = vscode.workspace.onDidSaveTextDocument((doc) => {
-    if (selectedFileUri && doc.uri.fsPath === selectedFileUri.fsPath) {
-      readAndSendFile(selectedFileUri);
-    }
-  });
-
-  context.subscriptions.push(disposable);
-};
-
-export { openFile, registerSaveWatcher };
+export { openFile };

@@ -1,37 +1,15 @@
-interface SendMessage {
-  type: SendMessageTypes;
+import { MessageContext } from "./context";
+
+export interface SendMessage {
+  type: string;
   payload: any;
+  requestId?: string;
 }
 
-interface RecieveMessage {
-  type: RecieveMessageType;
+export interface RecieveMessage {
+  type: string;
   payload: any;
+  requestId?: string;
 }
 
-type Handler = (payload: any) => void | Promise<void>;
-
-interface MessageRouter {
-  //Initialize
-  init: () => void;
-
-  //Registers all handlers
-  register: (message: RecieveMessageType, handler: Handler) => void;
-
-  //Listen to incomming data
-  listen: () => void;
-
-  //Send data
-  send: (message: SendMessage) => void;
-}
-
-type SendMessageTypes = "select-file";
-type RecieveMessageType = "update-shader";
-
-export {
-  Handler,
-  MessageRouter,
-  RecieveMessage,
-  RecieveMessageType,
-  SendMessage,
-  SendMessageTypes,
-};
+export type MessageHandler = (ctx: MessageContext) => Promise<void>;
