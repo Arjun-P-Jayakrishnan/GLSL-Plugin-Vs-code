@@ -11,9 +11,11 @@ export async function initRender(
   if (gl) throw new Error("webgl not supported");
 
   context.state.setGl(gl);
+  context.frameContextBuider.init(canvas);
   await context.shaderManager.init(gl);
 
   context.logger.info("Webgl initialized");
+  startLoop(context);
 }
 
 export function startLoop(appContext: AppContext) {
